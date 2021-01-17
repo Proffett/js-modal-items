@@ -1,35 +1,35 @@
-import {getResource} from '../services/services';
+// import {getResource} from "../services/services";
 
 function cards() {
-  // Используем классы для создание карточек меню
+	// Используем классы для создание карточек меню
 
-  class MenuCard {
-    constructor(src, alt, title, descr, price, parentSelector, ...classes) {
-      this.src = src;
-      this.alt = alt;
-      this.title = title;
-      this.descr = descr;
-      this.price = price;
-      this.classes = classes;
-      this.parent = document.querySelector(parentSelector);
-      this.transfer = 78;
-      this.changeToRUB();
-    }
+	class MenuCard {
+		constructor(src, alt, title, descr, price, parentSelector, ...classes) {
+			this.src = src;
+			this.alt = alt;
+			this.title = title;
+			this.descr = descr;
+			this.price = price;
+			this.classes = classes;
+			this.parent = document.querySelector(parentSelector);
+			this.transfer = 78;
+			this.changeToRUB();
+		}
 
-    changeToRUB() {
-      this.price = this.price * this.transfer;
-    }
+		changeToRUB() {
+			this.price = this.price * this.transfer;
+		}
 
-    render() {
-      const element = document.createElement("div");
+		render() {
+			const element = document.createElement("div");
 
-      if (this.classes.length === 0) {
-        this.classes = "menu__item";
-        element.classList.add(this.classes);
-      } else {
-        this.classes.forEach((className) => element.classList.add(className));
-      }
-      element.innerHTML = `
+			if (this.classes.length === 0) {
+				this.classes = "menu__item";
+				element.classList.add(this.classes);
+			} else {
+				this.classes.forEach((className) => element.classList.add(className));
+			}
+			element.innerHTML = `
                 <img src=${this.src} alt=${this.alt}>
                 <h3 class="menu__item-subtitle">${this.title}</h3>
                 <div class="menu__item-descr">${this.descr}</div>
@@ -39,25 +39,26 @@ function cards() {
                     <div class="menu__item-total"><span>${this.price}</span> руб./день</div>
                 </div>
             `;
-      this.parent.append(element);
-    }
-  }
-  function getResource() {
-    //AXIOS, get and create menu-card - third variant
-    axios.get("http://localhost:3000/menu").then((data) => {
-      data.data.forEach(({ img, altimg, title, descr, price }) => {
-        new MenuCard(
-          img,
-          altimg,
-          title,
-          descr,
-          price,
-          ".menu .container"
-        ).render();
-      });
-    });
-  }
-  getResource();
+			this.parent.append(element);
+		}
+	}
+	function getResource() {
+		//AXIOS, get and create menu-card - third variant
+		// eslint-disable-next-line no-undef
+		axios.get("http://localhost:3000/menu").then((data) => {
+			data.data.forEach(({ img, altimg, title, descr, price }) => {
+				new MenuCard(
+					img,
+					altimg,
+					title,
+					descr,
+					price,
+					".menu .container"
+				).render();
+			});
+		});
+	}
+	getResource();
 }
 
 export default cards;

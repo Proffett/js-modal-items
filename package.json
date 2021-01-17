@@ -23,6 +23,7 @@
     "@babel/polyfill": "^7.12.1",
     "axios": "^0.21.1",
     "es6-promise": "^4.2.8",
+    "jslint": "^0.12.1",
     "nodelist-foreach-polyfill": "^1.2.0"
   },
   "devDependencies": {
@@ -31,6 +32,7 @@
     "@babel/preset-env": "^7.12.11",
     "babel-loader": "^8.2.2",
     "core-js": "^3.8.2",
+    "eslint": "^7.18.0",
     "json-server": "^0.16.3",
     "webpack": "^5.14.0",
     "webpack-cli": "^4.3.1"
